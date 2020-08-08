@@ -1,0 +1,18 @@
+To run the program you need to create a file named config.properties in src/main/resources/.
+All the parameters are described below, you can also see example-config.properties file.
+
+url - an url to a database you want to augment (has to be postgreSQL)
+user - the user of the above database
+password - the password of the above user
+caching - cache all the data while copying, not recommended for big databases
+ignore.fk.constraints - ignore foreign key constraints while inserting data, allows cycles in foreign key dependencies but all the affected constraints need to be deferred
+table.name - a name of the table to start copying from
+multiplier - times you want the database to be copied
+sql.output.file - a name of the output sql script which can be used to insert new data into a database
+missing.fk.file - a filepath to a missing foreign key constraints, in case you have foreign key constraints that are not defined in a database, (e.g. 1 to 1 relationship is defined one way only) you can specify them in a configuration file (see example: src/main/resources/missing-fk-example.config)
+unique.constraints.to.skip - a list of unique constraints names for which you don't want to change value
+commit - commit transaction while running the program, set false if you want to add data manually using generated script
+optimize.id.search - optimize searching for unique key values (integer only) so it starts from (maximum_existing + 1)
+readable.strings - generate readable string values for new data (append # and number of copy), not recommended if the database is already augmented
+enable.gui - enable the graphical user interface in which you can modify configuration and see the progress
+unique.key.cache - cache all the unique key values, if set to false the program will generate new values without checking uniqueness, values are very likely but not guaranteed to be unique
